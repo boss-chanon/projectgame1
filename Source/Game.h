@@ -20,6 +20,8 @@ public:
 
 	static SDL_Renderer* renderer;
 	static SDL_Event event;
+
+	static int width, height;
 private:
 	bool isRunning = false;	
 	SDL_Window* window;		
