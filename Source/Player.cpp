@@ -3,6 +3,8 @@
 #include <iostream>
 
 SDL_Point Player::position;
+SDL_Rect Player::srcRect;
+SDL_Rect Player::destRect;
 int Player::speed;
 
 Player::Player(const char* filename)
@@ -78,7 +80,7 @@ void Player::move(int s)
 	destRect.h = srcRect.h * 2;
 	destRect.x = Camera::center().x - center.x;
 	destRect.y = Camera::center().y - center.y;
-
+	
 	attack->attack(direction, destRect.x, destRect.y, center);
 }
 

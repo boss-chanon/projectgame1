@@ -6,6 +6,7 @@
 
 Player* player1;
 Map* map;
+GameObject* object;
 
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
@@ -34,6 +35,7 @@ void Game::init(const char* title, int w, int h, bool fullscreen)
 
 		player1 = new Player("image/test2.png");
 		map = new Map("image/maptest1.png", width, height);
+		object = new GameObject("image/test1.png", 64, 64, 0, 0);
 
 		isRunning = true;
 	}
@@ -57,6 +59,7 @@ void Game::update()
 {
 	map->loadMap();
 	player1->move(3);
+	object->update();
 }
 
 void Game::render()
@@ -65,6 +68,7 @@ void Game::render()
 
 	map->drawMap();
 	player1->render();
+	object->render();
 
 	SDL_RenderPresent(renderer);
 }

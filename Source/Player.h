@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Attack.h"
 #include "Camera.h"
+#include "GameObject.h"
 #include <iostream>
 
 class Player
@@ -17,6 +18,7 @@ public:
 
 	static int speed;
 	static SDL_Point position;
+	static SDL_Rect srcRect, destRect;
 
 private:
 	int aniPos, aniWalk, walkCount = 0;
@@ -26,7 +28,6 @@ private:
 	
 	SDL_Point area;
 	SDL_Texture* texture;
-	SDL_Rect srcRect, destRect;
 	SDL_Point radius;
 	SDL_Point center;
 };
