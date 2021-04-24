@@ -12,7 +12,6 @@ public:
 	~GameObject();
 
 	void update();
-	static bool Collision(const SDL_Rect rec);
 	void render();
 
 private:
@@ -20,7 +19,6 @@ private:
 	int width, height;
 	bool renderState;
 	
-	SDL_Point center;
 	SDL_Texture* texture;
-	static SDL_Rect srcRect, destRect;
+	SDL_Rect srcRect, destRect;
 };
