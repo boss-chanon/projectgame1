@@ -12,13 +12,13 @@ public:
 	Player(const char* filename);
 	~Player();
 
+	void update();
 	void move(int speed);
 	void render();
 	void walk();
 
 	static int speed;
 	static SDL_Point position;
-	static SDL_Rect srcRect, destRect;
 
 private:
 	int aniPos, aniWalk, walkCount = 0;
@@ -30,4 +30,6 @@ private:
 	SDL_Texture* texture;
 	SDL_Point radius;
 	SDL_Point center;
+	SDL_Rect srcRect, destRect;
+
 };

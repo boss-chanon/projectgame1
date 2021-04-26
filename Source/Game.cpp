@@ -60,9 +60,10 @@ void Game::handleEvent()
 void Game::update()
 {
 	map->loadMap();
-	player1->move(3);
+	player1->update();
 	object->update();
 	object2->update();
+
 }
 
 void Game::render()

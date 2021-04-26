@@ -3,8 +3,6 @@
 #include <iostream>
 
 SDL_Point Player::position;
-SDL_Rect Player::srcRect;
-SDL_Rect Player::destRect;
 int Player::speed;
 
 Player::Player(const char* filename)
@@ -17,7 +15,13 @@ Player::Player(const char* filename)
 	radius.x = (area.x - 64) / 2;
 	radius.y = 10;
 
-	attack = new Attack("image/testATK.png", area, 1, radius);
+	attack = new Attack("image/testATK.png", area, 5, radius);
+}
+
+void Player::update()
+{
+	move(3);
+	attack->shoot(direction, destRect.x, destRect.y, center);
 }
 
 void Player::move(int s)
@@ -80,8 +84,6 @@ void Player::move(int s)
 	destRect.h = srcRect.h * 2;
 	destRect.x = Camera::center().x - center.x;
 	destRect.y = Camera::center().y - center.y;
-	
-	attack->attack(direction, destRect.x, destRect.y, center);
 }
 
 void Player::walk()
