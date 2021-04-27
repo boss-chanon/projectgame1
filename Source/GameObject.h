@@ -4,12 +4,12 @@
 #include "TextManager.h"
 #include "Camera.h"
 #include "Player.h"
+#include "ObjectData.h"
 
 class GameObject
 {
 public:
-	GameObject(const char* filename, int width, int height, int x, int y);
-	~GameObject();
+	GameObject(ObjectData data);
 
 	void update();
 	void render();
@@ -17,7 +17,10 @@ public:
 private:
 	int xpos, ypos;
 	int width, height;
+	char* filename;
 	bool renderState;
+
+	string str;
 	
 	SDL_Texture* texture;
 	SDL_Rect srcRect, destRect;

@@ -8,9 +8,6 @@ Map::Map(const char* filename, int w, int h)
 	height = h;
 }
 
-Map::~Map()
-{}
-
 void Map::loadMap()
 {
 	srcRect.w = Game::width;

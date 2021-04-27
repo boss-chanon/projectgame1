@@ -3,11 +3,10 @@
 #include "TextManager.h"
 #include "Player.h"
 #include "Map.h"
+#include "ObjectManager.h"
 
 Player* player1;
-Map* map;
-GameObject* object;
-GameObject* object2;
+Map* mapTest;
 
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
@@ -35,11 +34,11 @@ void Game::init(const char* title, int w, int h, bool fullscreen)
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
 		player1 = new Player("image/test2.png");
-		map = new Map("image/maptest1.png", width, height);
-		object = new GameObject("image/test1.png", 64, 64, 280, 280);
-		object2 = new GameObject("image/test1.png", 64, 64, 140, 140);
+		mapTest = new Map("image/maptest1.png", width, height);
+		ObjectManager::objectLoad("JsonFile/objtest.json");
 
 		isRunning = true;
+
 	}
 }
 
@@ -59,21 +58,18 @@ void Game::handleEvent()
 
 void Game::update()
 {
-	map->loadMap();
+	mapTest->loadMap();
 	player1->update();
-	object->update();
-	object2->update();
-
+	ObjectManager::update();
 }
 
 void Game::render()
 {
 	SDL_RenderClear(renderer);
 
-	map->drawMap();
+	mapTest->drawMap();
 	player1->render();
-	object->render();
-	object2->render();
+	ObjectManager::render();
 
 	SDL_RenderPresent(renderer);
 }

@@ -8,7 +8,6 @@ class Map
 {
 public:
 	Map(const char* filename, int width, int heigth);
-	~Map();
 
 	void loadMap();
 	void drawMap();

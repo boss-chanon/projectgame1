@@ -1,13 +1,16 @@
 #include "GameObject.h"
 
-GameObject::GameObject(const char* filename, int w, int h, int x, int y)
+GameObject::GameObject(ObjectData data)
 {
+	str = data.filename;
+	filename = const_cast<char*>(str.c_str());
+
 	texture = TextManager::LoadTexture(filename);
 
-	width = w;
-	height = h;
-	xpos = x;
-	ypos = y;
+	width = data.width;
+	height = data.height;
+	xpos = data.x;
+	ypos = data.y;
 }
 
 void GameObject::update()
