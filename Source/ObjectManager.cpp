@@ -1,40 +1,34 @@
 #include "ObjectManager.h"
 
 vector<GameObject> ObjectManager::object;
-ObjectData ObjectManager::tran;
-json ObjectManager::data, ObjectManager::none;
-
-string ObjectManager::title;
-int ObjectManager::r, ObjectManager::value, ObjectManager::i;
+vector<ObjectData> ObjectManager::list;
+int ObjectManager::value;
 
 void ObjectManager::objectLoad(const char* filename)
 {
-	int r = 0;
 	json data = JsonManager::loadJson(filename);
 
 	ObjectData tran;
 
-	json none = data["NONE"];
-	while (data[to_string(r)] != none)
+	for (int i = 0; i < data.size(); i++)
 	{
-		string title = to_string(r);
+		string title = to_string(i);
+
 		tran.filename = data[title]["filename"];
 		tran.width = data[title]["width"];
 		tran.height = data[title]["height"];
 		tran.x = data[title]["x"];
 		tran.y = data[title]["y"];
 
-		object.push_back(GameObject::GameObject(tran));
-
-		r++;
+		add(tran);
 	}
-	
-	value = object.size();
 }
 
 void ObjectManager::update()
 {
-	for (i = 0; i != value; i++)
+	value = object.size();
+
+	for (int i = 0; i < value; i++)
 	{
 		object[i].update();
 	}
@@ -42,8 +36,38 @@ void ObjectManager::update()
 
 void ObjectManager::render()
 {
-	for (i = 0; i != value; i++)
+	for (int i = 0; i < value; i++)
 	{
 		object[i].render();
 	}
+}
+
+void ObjectManager::add(ObjectData addData)
+{
+	list.push_back(addData);
+	object.push_back(GameObject::GameObject(addData));
+}
+
+void ObjectManager::save(const char* filename)
+{
+	json data;
+
+	for (int i = 0; i < value; i++)
+	{
+		string title = to_string(i);
+
+		data[title]["filename"] = list[i].filename;
+		data[title]["width"] = list[i].width;
+		data[title]["height"] = list[i].height;
+		data[title]["x"] = list[i].x;
+		data[title]["y"] = list[i].y;
+	}
+
+	JsonManager::saveJson(data, filename);
+}
+
+void ObjectManager::remove(int order)
+{
+	list.erase(list.begin() + order);
+	object.erase(object.begin() + order);
 }

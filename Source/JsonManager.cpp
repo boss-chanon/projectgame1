@@ -8,8 +8,8 @@ json JsonManager::loadJson(const char* filename)
 	return data;
 }
 
-/*void JsonManager::saveJson(json data, const char* filename)
+void JsonManager::saveJson(json data, const char* filename)
 {
-	/*ofstream file(filename);
-	file << std::setw(4) << data << endl; // don't sure
-}*/
+	ofstream file(filename);
+	file << setw(4) << data << endl;
+}

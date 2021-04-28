@@ -11,12 +11,16 @@ public:
 	static void objectLoad(const char* filename);
 	static void update();
 	static void render();
+	static void add(ObjectData addData);
+	static void save(const char* filename);
+	static void remove(int order);
 
 private:
 	static vector<GameObject> object;
+	static vector<ObjectData> list;
 	static ObjectData tran;
 	static json data, none;
 
 	static string title;
-	static int r, value, i;
+	static int value, i;
 };

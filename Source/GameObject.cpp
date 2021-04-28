@@ -28,12 +28,10 @@ void GameObject::update()
 	{
 		renderState = false;
 	}
-
 	else
 	{
 		renderState = true;
 	}
-
 }
 
 void GameObject::render()

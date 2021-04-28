@@ -38,7 +38,6 @@ void Game::init(const char* title, int w, int h, bool fullscreen)
 		ObjectManager::objectLoad("JsonFile/objtest.json");
 
 		isRunning = true;
-
 	}
 }
 
@@ -76,6 +75,7 @@ void Game::render()
 
 void Game::end()
 {
+	ObjectManager::save("JsonFile/objtest.json");
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit;

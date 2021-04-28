@@ -67,9 +67,27 @@ void Player::move(int s)
 
 	if (Game::event.type == SDL_KEYUP)
 	{
-		aniWalk = walkCount = 0;
-		position.x = 0;
-		position.y = 0;
+		switch (Game::event.key.keysym.sym)
+		{
+		case SDLK_w:
+			position.y = 0;
+			aniWalk = walkCount = 0;
+			break;
+		case SDLK_a:
+			position.x = 0;
+			aniWalk = walkCount = 0;
+			break;
+		case SDLK_s:
+			position.y = 0;
+			aniWalk = walkCount = 0;
+			break;
+		case SDLK_d:
+			position.x = 0;
+			aniWalk = walkCount = 0;
+			break;
+		default:
+			break;
+		}
 	}
 
 	center.x = destRect.w / 2;
