@@ -2,13 +2,13 @@
 
 #include "Game.h"
 #include "TextManager.h"
+#include "Collision.h"
 #include <iostream>
 #include <math.h>
 
 #ifndef PI
 #define PI 3.14159265
-#endif // !PI
-
+#endif // PI
 
 class Attack
 {
@@ -25,13 +25,11 @@ public:
 	void render();
 
 private:
-	int speed, aniX, aniY, x, y, move;															
-	double angle;
+	int speed, aniX, aniY, x, y, move, xpos, ypos;
+	double angle, xmove, ymove;
 	bool ATKstage = false;
 
-	SDL_Point area;
+	SDL_Rect srcRect, destRect, objRect, hitRect;
+	SDL_Point area, center, radius;
 	SDL_Texture* texture;
-	SDL_Rect srcRect, destRect;
-	SDL_Point center;
-	SDL_Point radius;
 };

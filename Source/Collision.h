@@ -1,6 +1,9 @@
 #pragma once
 
 #include "SDL2/SDL.h"
+#include <iostream>
+
+using namespace std;
 
 static bool Collision(const SDL_Rect& recA, const SDL_Rect& recB)
 {
@@ -13,6 +16,5 @@ static bool Collision(const SDL_Rect& recA, const SDL_Rect& recB)
 	{
 		return true;
 	}
-
 	return false;
 }

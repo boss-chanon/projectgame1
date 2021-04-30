@@ -7,14 +7,12 @@
 class Map
 {
 public:
-	Map(const char* filename, int width, int heigth);
+	Map(const char* filename);
 
 	void loadMap();
 	void drawMap();
 
 private:
-	int width, height;
-
 	SDL_Texture* texture;
 	SDL_Rect srcRect, destRect;
 };

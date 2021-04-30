@@ -1,11 +1,8 @@
 #include "Map.h"
 
-Map::Map(const char* filename, int w, int h)
+Map::Map(const char* filename)
 {
 	texture = TextManager::LoadTexture(filename);
-
-	width = w;
-	height = h;
 }
 
 void Map::loadMap()

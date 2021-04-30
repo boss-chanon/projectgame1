@@ -14,10 +14,10 @@ public:
 	static void add(ObjectData addData);
 	static void save(const char* filename);
 	static void remove(int order);
-
-private:
+	
 	static vector<GameObject> object;
 	static vector<ObjectData> list;
+private:
 	static ObjectData tran;
 	static json data, none;
 
