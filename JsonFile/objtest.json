@@ -1,1 +1,10 @@
-null
+{
+    "0": {
+        "HP": 40,
+        "filename": "../image/test1.png",
+        "height": 64,
+        "width": 64,
+        "x": 0,
+        "y": 0
+    }
+}
