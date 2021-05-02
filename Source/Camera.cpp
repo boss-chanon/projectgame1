@@ -1,9 +1,13 @@
 #include "Camera.h"
 
-int Camera::xpos;
-int Camera::ypos;
+int Camera::xpos, Camera::ypos, Camera::speed;
+SDL_Point Camera::cen, Camera::position;
 
-SDL_Point Camera::cen;
+void Camera::move(SDL_Point pos, int s)
+{
+	position = pos;
+	speed = s;
+}
 
 SDL_Point Camera::center()
 {
@@ -15,14 +19,14 @@ SDL_Point Camera::center()
 
 int Camera::xmove()
 {
-	xpos += (Player::position.x * Player::speed);
+	xpos += (position.x * speed);
 	
 	return xpos;
 }
 
 int Camera::ymove()
 {
-	ypos += (Player::position.y * Player::speed);
+	ypos += (position.y * speed);
 
 	return ypos;
 }

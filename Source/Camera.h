@@ -7,10 +7,11 @@
 class Camera
 {
 public:
+	static void move(SDL_Point position, int speed);
 	static SDL_Point center();
 	static int xmove();
 	static int ymove();
 private:
-	static int xpos, ypos;
-	static SDL_Point cen;
+	static int xpos, ypos, speed;
+	static SDL_Point cen, position;
 };

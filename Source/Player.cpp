@@ -1,27 +1,29 @@
 #include "Player.h"
 #include "TextManager.h"
+#include "StatManager.h"
 #include <iostream>
-
-SDL_Point Player::position;
-int Player::speed;
 
 Player::Player(const char* filename)
 {
 	texture = TextManager::LoadTexture(filename);
 
-	area.x = 80;
-	area.y = 16;
+	area.x = 16;
+	area.y = 80;
 	
 	radius.x = (area.x - 64) / 2;
 	radius.y = 10;
 
-	attack = new Attack("image/testATK.png", area, 5, radius);
+	stat = StatManager::loadStat("../JsonFile/statTest.json", "Player");
+	attack = new Attack("../image/testATK.png", area, 5, radius);
 }
 
 void Player::update()
 {
 	move(3);
+	Camera::move(position, speed);
+	attack->setStat(stat);
 	attack->shoot(direction, destRect.x, destRect.y, center);
+	StatManager::saveStat("../JsonFile/statTest.json", "Player", stat);
 }
 
 void Player::move(int s)

@@ -10,6 +10,11 @@ Attack::Attack(const char* filename, SDL_Point size, int spd, SDL_Point rad)
 	radius = rad;
 }
 
+void Attack::setStat(Stat s)
+{
+	stat = s;
+}
+
 void Attack::slash(std::string direction, int posx, int posy, SDL_Point cen)
 {
 	xpos = posx;
@@ -43,6 +48,11 @@ void Attack::slash(std::string direction, int posx, int posy, SDL_Point cen)
 				if (Collision(hitRect, objRect))
 				{
 					cout << "hit" << endl;
+					ObjectManager::list[i].HP -= stat.STR;
+					if (ObjectManager::list[i].HP == 0)
+					{
+						ObjectManager::remove(i);
+					}
 				}
 			}
 		}
@@ -92,6 +102,11 @@ void Attack::pierce(std::string direction, int posx, int posy, SDL_Point cen)
 				if (Collision(hitRect, objRect))
 				{
 					cout << "hit" << endl;
+					ObjectManager::list[i].HP -= stat.STR;
+					if (ObjectManager::list[i].HP == 0)
+					{
+						ObjectManager::remove(i);
+					}
 				}
 			}
 		}
@@ -142,6 +157,11 @@ void Attack::blunt(std::string direction, int posx, int posy, SDL_Point cen)
 				if (Collision(hitRect, objRect))
 				{
 					cout << "hit" << endl;
+					ObjectManager::list[i].HP -= stat.STR;
+					if (ObjectManager::list[i].HP == 0)
+					{
+						ObjectManager::remove(i);
+					}
 				}
 			}
 		}
@@ -189,9 +209,9 @@ void Attack::shoot(std::string direction, int posx, int posy, SDL_Point cen)
 		}
 
 		hitRect.w = area.x;
-		hitRect.h = area.y;
+		hitRect.h = area.x;
 		hitRect.x = xpos - radius.x + xmove;
-		hitRect.y = ypos + cen.y - (area.y / 2) - ymove;
+		hitRect.y = ypos - radius.x - ymove;
 
 		for (int i = 0; i < ObjectManager::list.size(); i++)
 		{
@@ -204,6 +224,11 @@ void Attack::shoot(std::string direction, int posx, int posy, SDL_Point cen)
 				cout << "hit" << endl;
 				xmove = ymove = move = 0;
 				ATKstage = false;
+				ObjectManager::list[i].HP -= stat.STR;
+				if (ObjectManager::list[i].HP == 0)
+				{
+					ObjectManager::remove(i);
+				}
 			}
 		}
 	}	

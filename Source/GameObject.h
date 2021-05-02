@@ -13,7 +13,6 @@ public:
 
 	void update();
 	void render();
-
 private:
 	int xpos, ypos;
 	int width, height;

@@ -19,6 +19,7 @@ void ObjectManager::objectLoad(const char* filename)
 		tran.height = data[title]["height"];
 		tran.x = data[title]["x"];
 		tran.y = data[title]["y"];
+		tran.HP = data[title]["HP"];
 
 		add(tran);
 	}
@@ -61,6 +62,7 @@ void ObjectManager::save(const char* filename)
 		data[title]["height"] = list[i].height;
 		data[title]["x"] = list[i].x;
 		data[title]["y"] = list[i].y;
+		data[title]["HP"] = list[i].HP;
 	}
 
 	JsonManager::saveJson(data, filename);

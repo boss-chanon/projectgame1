@@ -4,6 +4,7 @@
 #include "Attack.h"
 #include "Camera.h"
 #include "GameObject.h"
+#include "Stat.h"
 #include <iostream>
 
 class Player
@@ -17,19 +18,15 @@ public:
 	void render();
 	void walk();
 
-	static int speed;
-	static SDL_Point position;
-
 private:
 	int aniPos, aniWalk, walkCount = 0;
+	int speed;
 	std::string direction;
 	
+	Stat stat;
 	Attack* attack;
-	
-	SDL_Point area;
-	SDL_Texture* texture;
-	SDL_Point radius;
-	SDL_Point center;
-	SDL_Rect srcRect, destRect;
 
+	SDL_Texture* texture;
+	SDL_Point radius, center, area, position;
+	SDL_Rect srcRect, destRect;
 };

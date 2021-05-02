@@ -33,10 +33,10 @@ void Game::init(const char* title, int w, int h, bool fullscreen)
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 		
-		ObjectManager::objectLoad("JsonFile/objtest.json");
+		ObjectManager::objectLoad("../JsonFile/objtest.json");
 
-		player1 = new Player("image/test2.png");
-		mapTest = new Map("image/maptest1.png");
+		player1 = new Player("../image/test2.png");
+		mapTest = new Map("../image/maptest1.png");
 
 		isRunning = true;
 	}
@@ -76,7 +76,7 @@ void Game::render()
 
 void Game::end()
 {
-	ObjectManager::save("JsonFile/objtest.json");
+	ObjectManager::save("../JsonFile/objtest.json");
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit;
