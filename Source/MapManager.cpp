@@ -68,10 +68,10 @@ void MapManager::spawn(const int spawnTime)
 
 				for (int n = 0; n < ObjectManager::list.size(); n++)
 				{
-					baseRect.h = ObjectManager::list[n].height;
-					baseRect.w = ObjectManager::list[n].width;
-					baseRect.x = ObjectManager::list[n].x + space;
-					baseRect.y = ObjectManager::list[n].y + space;
+					baseRect.h = ObjectManager::list[n].height + space;
+					baseRect.w = ObjectManager::list[n].width + space;
+					baseRect.x = ObjectManager::list[n].x;
+					baseRect.y = ObjectManager::list[n].y;
 					if (Collision(baseRect, objRect))
 					{
 						addStage = false;

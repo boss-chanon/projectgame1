@@ -225,7 +225,7 @@ void Attack::shoot(std::string direction, int posx, int posy, SDL_Point cen)
 				xmove = ymove = move = 0;
 				ATKstage = false;
 				ObjectManager::list[i].HP -= stat.STR;
-				if (ObjectManager::list[i].HP == 0)
+				if (ObjectManager::list[i].HP <= 0)
 				{
 					ObjectManager::remove(i);
 				}
