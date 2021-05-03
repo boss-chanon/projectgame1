@@ -8,8 +8,8 @@ SDL_Texture* TextManager::LoadTexture(const char* filename)
 	SDL_Surface* surface = IMG_Load(filename);
 	SDL_Texture* tex = SDL_CreateTextureFromSurface(Game::renderer, surface);
 
-	width = surface->w;
 	height = surface->h;
+	width = surface->w;
 
 	return tex;
 }

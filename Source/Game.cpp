@@ -4,9 +4,10 @@
 #include "Player.h"
 #include "Map.h"
 #include "ObjectManager.h"
+#include "MapManager.h"
+#include "TimeManager.h"
 
 Player* player1;
-Map* mapTest;
 
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
@@ -33,10 +34,10 @@ void Game::init(const char* title, int w, int h, bool fullscreen)
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 		
-		ObjectManager::objectLoad("../JsonFile/objtest.json");
+		TimeManager::timeSet();
 
+		MapManager::loadData("../JsonFile/maptest.json", "map0");
 		player1 = new Player("../image/test2.png");
-		mapTest = new Map("../image/maptest1.png");
 
 		isRunning = true;
 	}
@@ -58,16 +59,17 @@ void Game::handleEvent()
 
 void Game::update()
 {
-	mapTest->loadMap();
+	MapManager::map->loadMap();
 	player1->update();
 	ObjectManager::update();
+	MapManager::spawn(60000);
 }
 
 void Game::render()
 {
 	SDL_RenderClear(renderer);
 
-	mapTest->drawMap();
+	MapManager::map->drawMap();
 	player1->render();
 	ObjectManager::render();
 
@@ -76,7 +78,7 @@ void Game::render()
 
 void Game::end()
 {
-	ObjectManager::save("../JsonFile/objtest.json");
+	MapManager::saveData();
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit;

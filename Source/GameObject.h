@@ -16,9 +16,7 @@ public:
 private:
 	int xpos, ypos;
 	int width, height;
-	char* filename;
 	bool renderState;
-	string str;
 
 	SDL_Texture* texture;
 	SDL_Rect srcRect, destRect;

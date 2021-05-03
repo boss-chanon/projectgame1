@@ -2,10 +2,9 @@
 
 GameObject::GameObject(ObjectData data)
 {
-	str = data.filename;
-	filename = const_cast<char*>(str.c_str());
+	string filename = data.image;
 
-	texture = TextManager::LoadTexture(filename);
+	texture = TextManager::LoadTexture(const_cast<char*>(filename.c_str()));
 
 	width = data.width;
 	height = data.height;
@@ -15,8 +14,8 @@ GameObject::GameObject(ObjectData data)
 
 void GameObject::update()
 {
-	srcRect.w = 32;
-	srcRect.h = 32;
+	srcRect.w = TextManager::width;
+	srcRect.h = TextManager::height;
 	srcRect.x = srcRect.y = 0;
 
 	destRect.w = width;

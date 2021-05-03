@@ -4,17 +4,15 @@ vector<GameObject> ObjectManager::object;
 vector<ObjectData> ObjectManager::list;
 int ObjectManager::value;
 
-void ObjectManager::objectLoad(const char* filename)
+void ObjectManager::objectLoad(json data)
 {
-	json data = JsonManager::loadJson(filename);
-
 	ObjectData tran;
 
 	for (int i = 0; i < data.size(); i++)
 	{
 		string title = to_string(i);
 
-		tran.filename = data[title]["filename"];
+		tran.image = data[title]["image"];
 		tran.width = data[title]["width"];
 		tran.height = data[title]["height"];
 		tran.x = data[title]["x"];
@@ -49,7 +47,7 @@ void ObjectManager::add(ObjectData addData)
 	object.push_back(GameObject::GameObject(addData));
 }
 
-void ObjectManager::save(const char* filename)
+json ObjectManager::save()
 {
 	json data;
 
@@ -57,7 +55,7 @@ void ObjectManager::save(const char* filename)
 	{
 		string title = to_string(i);
 
-		data[title]["filename"] = list[i].filename;
+		data[title]["image"] = list[i].image;
 		data[title]["width"] = list[i].width;
 		data[title]["height"] = list[i].height;
 		data[title]["x"] = list[i].x;
@@ -65,7 +63,7 @@ void ObjectManager::save(const char* filename)
 		data[title]["HP"] = list[i].HP;
 	}
 
-	JsonManager::saveJson(data, filename);
+	return data;
 }
 
 void ObjectManager::remove(int order)

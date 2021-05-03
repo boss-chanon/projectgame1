@@ -5,7 +5,7 @@ using namespace std;
 struct ObjectData
 {
 	//data
-	string filename;
+	string image;
 	int width;
 	int height;
 	int x;
