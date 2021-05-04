@@ -4,7 +4,6 @@ string MapManager::image, MapManager::filename, MapManager::name;
 json MapManager::object, MapManager::spawnData, MapManager::data;
 Map* MapManager::map;
 
-int MapManager::seed = SDL_GetTicks();
 int MapManager::space = 50;
 
 void MapManager::loadData(string fname, string n)
@@ -45,8 +44,9 @@ void MapManager::spawn(const int spawnTime)
 
 	if (TimeManager::delay(spawnTime))
 	{
-		srand(SDL_GetTicks());
-		bool addStage = true;
+		int seed = SDL_GetTicks();
+
+		srand(seed);
 		int numRand = rand() % (Max + 1);
 
 		for (int i = 0; i <= spawnRange.size() - 2; i++)
@@ -57,7 +57,7 @@ void MapManager::spawn(const int spawnTime)
 			if (spawnRange[i] <= numRand < spawnRange[i + 1])
 			{
 				ObjectData objData;
-				SDL_Rect objRect, baseRect;
+				SDL_Rect objRect;
 				string title = to_string(i);
 				objRect.h = objData.height = spawnData[title]["height"];
 				objRect.w = objData.width = spawnData[title]["width"];
@@ -66,18 +66,7 @@ void MapManager::spawn(const int spawnTime)
 				objData.HP = spawnData[title]["HP"];
 				objData.image = spawnData[title]["image"];
 
-				for (int n = 0; n < ObjectManager::list.size(); n++)
-				{
-					baseRect.h = ObjectManager::list[n].height + space;
-					baseRect.w = ObjectManager::list[n].width + space;
-					baseRect.x = ObjectManager::list[n].x;
-					baseRect.y = ObjectManager::list[n].y;
-					if (Collision(baseRect, objRect))
-					{
-						addStage = false;
-					}
-				}
-				if (addStage)
+				if (!spawnOverlab(objRect))
 				{
 					ObjectManager::add(objData);
 					cout << "add" << endl;
@@ -85,6 +74,38 @@ void MapManager::spawn(const int spawnTime)
 			}
 		}
 	}
+}
+
+bool MapManager::spawnOverlab(SDL_Rect rect)
+{
+	SDL_Rect objRect;
+	SDL_Rect playerRect;
+
+	playerRect.w = 64;
+	playerRect.h = 64;
+	playerRect.x = Camera::xmove + Camera::center().x - (playerRect.w / 2);
+	playerRect.y = Camera::ymove + Camera::center().y - (playerRect.h / 2);
+
+	if (Collision(playerRect, rect))
+	{
+		return true;
+	}
+
+	for (int n = 0; n < ObjectManager::list.size(); n++)
+	{
+		objRect.h = ObjectManager::list[n].height + (space * 2);
+		objRect.w = ObjectManager::list[n].width + (space * 2);
+		objRect.x = ObjectManager::list[n].x - space;
+		objRect.y = ObjectManager::list[n].y - space;
+		if (Collision(objRect, rect))
+		{
+			return true;
+		}
+	}
+
+
+
+	return false;
 }
 
 void MapManager::saveData()

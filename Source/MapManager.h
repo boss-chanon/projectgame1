@@ -12,12 +12,12 @@ class MapManager
 public:
 	static void loadData(string filename, string name);
 	static void spawn(const int spawnTime);
+	static bool spawnOverlab(SDL_Rect rec);
 	static void saveData();
 
 	static string image, filename, name; 
 	static json object, spawnData, data;
 	static Map* map;
 private:
-	static int seed;
 	static int space;
 };

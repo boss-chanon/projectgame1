@@ -19,16 +19,16 @@ Player::Player(const char* filename)
 
 void Player::update()
 {
-	move(3);
+	move();
 	Camera::move(position, speed);
 	attack->setStat(stat);
 	attack->shoot(direction, destRect.x, destRect.y, center);
 	StatManager::saveStat("../JsonFile/statTest.json", "Player", stat);
 }
 
-void Player::move(int s)
+void Player::move()
 {
-	speed = s;
+	speed = 6;
 
 	if (Game::event.type == SDL_KEYDOWN)
 	{

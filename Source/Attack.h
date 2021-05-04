@@ -24,6 +24,8 @@ public:
 	void blunt(std::string direction, int xpos, int ypos, SDL_Point cen);
 	void shoot(std::string direction, int xpos, int ypos, SDL_Point cen);
 
+	bool hit(SDL_Rect rect);
+	int damage();
 	void attackDirection(std::string direction);
 	void render();
 private:

@@ -20,8 +20,8 @@ void GameObject::update()
 
 	destRect.w = width;
 	destRect.h = height;
-	destRect.x = xpos - Camera::xmove();
-	destRect.y = ypos - Camera::ymove();
+	destRect.x = xpos - Camera::xmove;
+	destRect.y = ypos - Camera::ymove;
 
 	if (((destRect.x + width) < 0) || (destRect.x > Game::width) || ((destRect.y + height) < 0) || (destRect.y > Game::height))
 	{

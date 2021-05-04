@@ -39,22 +39,7 @@ void Attack::slash(std::string direction, int posx, int posy, SDL_Point cen)
 		{
 			aniX = 0;
 			ATKstage = false;
-			for (int i = 0; i < ObjectManager::list.size(); i++)
-			{
-				objRect.x = ObjectManager::list[i].x - Camera::xmove();
-				objRect.y = ObjectManager::list[i].y - Camera::ymove();
-				objRect.h = ObjectManager::list[i].height;
-				objRect.w = ObjectManager::list[i].width;
-				if (Collision(hitRect, objRect))
-				{
-					cout << "hit" << endl;
-					ObjectManager::list[i].HP -= stat.STR;
-					if (ObjectManager::list[i].HP == 0)
-					{
-						ObjectManager::remove(i);
-					}
-				}
-			}
+			hit(hitRect);
 		}
 	}
 
@@ -93,22 +78,7 @@ void Attack::pierce(std::string direction, int posx, int posy, SDL_Point cen)
 		{
 			aniY = 0;
 			ATKstage = false;
-			for (int i = 0; i < ObjectManager::list.size(); i++)
-			{
-				objRect.x = ObjectManager::list[i].x - Camera::xmove();
-				objRect.y = ObjectManager::list[i].y - Camera::ymove();
-				objRect.h = ObjectManager::list[i].height;
-				objRect.w = ObjectManager::list[i].width;
-				if (Collision(hitRect, objRect))
-				{
-					cout << "hit" << endl;
-					ObjectManager::list[i].HP -= stat.STR;
-					if (ObjectManager::list[i].HP == 0)
-					{
-						ObjectManager::remove(i);
-					}
-				}
-			}
+			hit(hitRect);
 		}
 	}
 
@@ -148,22 +118,7 @@ void Attack::blunt(std::string direction, int posx, int posy, SDL_Point cen)
 		{
 			aniY = 0;
 			ATKstage = false;
-			for (int i = 0; i < ObjectManager::list.size(); i++)
-			{
-				objRect.x = ObjectManager::list[i].x - Camera::xmove();
-				objRect.y = ObjectManager::list[i].y - Camera::ymove();
-				objRect.h = ObjectManager::list[i].height;
-				objRect.w = ObjectManager::list[i].width;
-				if (Collision(hitRect, objRect))
-				{
-					cout << "hit" << endl;
-					ObjectManager::list[i].HP -= stat.STR;
-					if (ObjectManager::list[i].HP == 0)
-					{
-						ObjectManager::remove(i);
-					}
-				}
-			}
+			hit(hitRect);
 		}
 	}
 
@@ -213,23 +168,10 @@ void Attack::shoot(std::string direction, int posx, int posy, SDL_Point cen)
 		hitRect.x = xpos - radius.x + xmove;
 		hitRect.y = ypos - radius.x - ymove;
 
-		for (int i = 0; i < ObjectManager::list.size(); i++)
+		if (hit(hitRect))
 		{
-			objRect.x = ObjectManager::list[i].x - Camera::xmove();
-			objRect.y = ObjectManager::list[i].y - Camera::ymove();
-			objRect.h = ObjectManager::list[i].height;
-			objRect.w = ObjectManager::list[i].width;
-			if (Collision(hitRect, objRect))
-			{
-				cout << "hit" << endl;
-				xmove = ymove = move = 0;
-				ATKstage = false;
-				ObjectManager::list[i].HP -= stat.STR;
-				if (ObjectManager::list[i].HP <= 0)
-				{
-					ObjectManager::remove(i);
-				}
-			}
+			xmove = ymove = move = 0;
+			ATKstage = false;
 		}
 	}	
 
@@ -278,6 +220,37 @@ void Attack::attackDirection(std::string direction)
 		hitRect.x = xpos - area.y - radius.y + (center.y * 2) - area.y;
 		hitRect.y = ypos - radius.x;
 	}
+}
+
+bool Attack::hit(SDL_Rect rect)
+{
+	for (int i = 0; i < ObjectManager::list.size(); i++)
+	{
+		objRect.x = ObjectManager::list[i].x - Camera::xmove;
+		objRect.y = ObjectManager::list[i].y - Camera::ymove;
+		objRect.h = ObjectManager::list[i].height;
+		objRect.w = ObjectManager::list[i].width;
+		if (Collision(hitRect, objRect))
+		{
+			cout << "hit" << endl;
+			ObjectManager::list[i].HP -= damage();
+			if (ObjectManager::list[i].HP == 0)
+			{
+				ObjectManager::remove(i);
+			}
+
+			return true;
+		}
+	}
+
+	return false;
+}
+
+int Attack::damage()
+{
+	int damage = stat.STR;
+
+	return damage;
 }
 
 void Attack::render()

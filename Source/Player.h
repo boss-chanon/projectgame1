@@ -14,7 +14,7 @@ public:
 	~Player();
 
 	void update();
-	void move(int speed);
+	void move();
 	void render();
 	void walk();
 
