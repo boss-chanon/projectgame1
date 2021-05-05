@@ -7,6 +7,9 @@ Player::Player(const char* filename)
 {
 	texture = TextManager::LoadTexture(filename);
 
+	fileHeight = TextManager::height;
+	fileWidth = TextManager::width;
+
 	area.x = 16;
 	area.y = 80;
 	
@@ -15,11 +18,14 @@ Player::Player(const char* filename)
 
 	stat = StatManager::loadStat("../JsonFile/statTest.json", "Player");
 	attack = new Attack("../image/testATK.png", area, 5, radius);
+	inventory = new Inventory("../JsonFile/inventoryTest.json", "Player");
+	inventory->load();
 }
 
 void Player::update()
 {
 	move();
+	inventory->save();
 	Camera::move(position, speed);
 	attack->setStat(stat);
 	attack->shoot(direction, destRect.x, destRect.y, center);
@@ -28,7 +34,8 @@ void Player::update()
 
 void Player::move()
 {
-	speed = 6;
+	speed = 3;
+	int frame = 4;
 
 	if (Game::event.type == SDL_KEYDOWN)
 	{
@@ -95,8 +102,8 @@ void Player::move()
 	center.x = destRect.w / 2;
 	center.y = destRect.h / 2;
 
-	srcRect.w = 32;
-	srcRect.h = 32;
+	srcRect.w = fileWidth / frame;
+	srcRect.h = fileHeight / frame;
 	srcRect.x = aniWalk * srcRect.w;
 	srcRect.y = aniPos * srcRect.h;
 

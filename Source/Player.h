@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "GameObject.h"
 #include "Stat.h"
+#include "Inventory.h"
 #include <iostream>
 
 class Player
@@ -20,11 +21,12 @@ public:
 
 private:
 	int aniPos, aniWalk, walkCount = 0;
-	int speed;
+	int speed, fileWidth, fileHeight;
 	std::string direction;
 	
 	Stat stat;
 	Attack* attack;
+	Inventory* inventory;
 
 	SDL_Texture* texture;
 	SDL_Point radius, center, area, position;

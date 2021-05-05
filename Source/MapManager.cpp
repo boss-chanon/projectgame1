@@ -21,23 +21,25 @@ void MapManager::loadData(string fname, string n)
 	map = new Map(const_cast<char*>(image.c_str()));
 }
 
-void MapManager::spawn(const int spawnTime)
+void MapManager::spawnObject(const int spawnTime)
 {
 	vector<int> spawnRange = { 0 };
 	vector<spawnArea> area;
 	int Max;
 
-	for (int i = 0; i < spawnData.size(); i++)
+	json spawnObj = spawnData["object"];
+
+	for (int i = 0; i < spawnObj.size(); i++)
 	{
-		int range = spawnData[to_string(i)]["spawnRate"] + spawnRange[i];
+		int range = spawnObj[to_string(i)]["spawnRate"] + spawnRange[i];
 		spawnRange.push_back(range);
 		Max = range;
 
 		spawnArea tran;
-		tran.height = spawnData[to_string(i)]["area"]["height"];
-		tran.width = spawnData[to_string(i)]["area"]["width"];
-		tran.x = spawnData[to_string(i)]["area"]["x"];
-		tran.y = spawnData[to_string(i)]["area"]["y"];
+		tran.height = spawnObj[to_string(i)]["area"]["height"];
+		tran.width = spawnObj[to_string(i)]["area"]["width"];
+		tran.x = spawnObj[to_string(i)]["area"]["x"];
+		tran.y = spawnObj[to_string(i)]["area"]["y"];
 
 		area.push_back(tran);
 	}
@@ -59,12 +61,12 @@ void MapManager::spawn(const int spawnTime)
 				ObjectData objData;
 				SDL_Rect objRect;
 				string title = to_string(i);
-				objRect.h = objData.height = spawnData[title]["height"];
-				objRect.w = objData.width = spawnData[title]["width"];
+				objRect.h = objData.height = spawnObj[title]["height"];
+				objRect.w = objData.width = spawnObj[title]["width"];
 				objRect.x = objData.x = xRand;
 				objRect.y = objData.y = yRand;
-				objData.HP = spawnData[title]["HP"];
-				objData.image = spawnData[title]["image"];
+				objData.HP = spawnObj[title]["HP"];
+				objData.image = spawnObj[title]["image"];
 
 				if (!spawnOverlab(objRect))
 				{
