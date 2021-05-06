@@ -1,9 +1,15 @@
 #include "Inventory.h"
 
-Inventory::Inventory(string filename, string n)
+Inventory::Inventory(string filename, string n, int size)
 {
 	file = filename;
 	name = n;
+	slotSize = size;
+
+	for (int i = 0; i < slotSize; i++)
+	{
+		item.push_back(Stack("0", 0));
+	}
 
 	maxFigure = 64;
 }
@@ -38,11 +44,34 @@ void Inventory::add(Stack data)
 
 	if (!addStage)
 	{
-		item.push_back(data);
+		for (int i = 0; i < item.size(); i++)
+		{
+			if (item[i].ID == "0")
+			{
+				item[i].ID = data.ID;
+				item[i].figure = data.figure;
+				break;
+			}
+		}
 	}
 }
 
-int Inventory::remove(int order, int figure)
+void Inventory::clearSlot(int slot)
+{
+	item[slot].ID = "0";
+	item[slot].figure = 0;
+}
+
+void Inventory::changeSlot(int from, int to)
+{
+	if (item[to].ID == "0")
+	{
+		item[to] = item[from];
+		clearSlot(from);
+	}
+}
+
+int Inventory::removeBySlot(int order, int figure)
 {
 	int over = 0;
 
@@ -51,10 +80,31 @@ int Inventory::remove(int order, int figure)
 	if (item[order].figure <= 0)
 	{
 		over -= item[order].figure;
-		item.erase(item.begin() + order);
+		clearSlot(order);
 	}
 
 	return over;
+}
+
+bool Inventory::removeByID(string ID)
+{
+	for (int i = slotSize - 1; i >= 0; i--)
+	{
+		if (item[i].ID == ID)
+		{
+			if (item[i].figure > 0)
+			{
+				item[i].figure--;
+				if (item[i].figure <= 0)
+				{
+					clearSlot(i);
+				}
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
 
 void Inventory::save()

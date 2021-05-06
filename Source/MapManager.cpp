@@ -46,7 +46,7 @@ void MapManager::spawnObject(const int spawnTime)
 
 	if (TimeManager::delay(spawnTime))
 	{
-		int seed = SDL_GetTicks();
+		int seed = TimeManager::getTime();
 
 		srand(seed);
 		int numRand = rand() % (Max + 1);
@@ -56,9 +56,10 @@ void MapManager::spawnObject(const int spawnTime)
 			int xRand = rand() % area[i].width + area[i].x;
 			int yRand = rand() % area[i].height + area[i].y;
 
-			if (spawnRange[i] <= numRand < spawnRange[i + 1])
+			ObjectData objData;
+
+			if ((spawnRange[i] <= numRand) && (numRand < spawnRange[i + 1]))
 			{
-				ObjectData objData;
 				SDL_Rect objRect;
 				string title = to_string(i);
 				objRect.h = objData.height = spawnObj[title]["height"];

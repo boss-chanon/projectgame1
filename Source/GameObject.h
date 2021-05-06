@@ -15,7 +15,7 @@ public:
 	void render();
 private:
 	int xpos, ypos;
-	int width, height;
+	int width, height, fileWidth, fileHeight;
 	bool renderState;
 
 	SDL_Texture* texture;

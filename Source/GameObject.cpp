@@ -10,12 +10,15 @@ GameObject::GameObject(ObjectData data)
 	height = data.height;
 	xpos = data.x;
 	ypos = data.y;
+
+	fileHeight = TextManager::height;
+	fileWidth = TextManager::width;
 }
 
 void GameObject::update()
 {
-	srcRect.w = TextManager::width;
-	srcRect.h = TextManager::height;
+	srcRect.w = fileWidth;
+	srcRect.h = fileHeight;
 	srcRect.x = srcRect.y = 0;
 
 	destRect.w = width;

@@ -6,6 +6,7 @@
 #include "ObjectManager.h"
 #include "MapManager.h"
 #include "TimeManager.h"
+#include "Item.h"
 
 Player* player1;
 
@@ -35,7 +36,7 @@ void Game::init(const char* title, int w, int h, bool fullscreen)
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 		
 		TimeManager::timeSet();
-
+		Item::loadItem("../JsonFile/itemTest.json");
 		MapManager::loadData("../JsonFile/maptest.json", "map0");
 		player1 = new Player("../image/test2.png");
 
@@ -62,7 +63,7 @@ void Game::update()
 	MapManager::map->loadMap();
 	player1->update();
 	ObjectManager::update();
-	MapManager::spawn(60000);
+	MapManager::spawnObject(60000);
 }
 
 void Game::render()

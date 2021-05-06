@@ -18,7 +18,7 @@ Player::Player(const char* filename)
 
 	stat = StatManager::loadStat("../JsonFile/statTest.json", "Player");
 	attack = new Attack("../image/testATK.png", area, 5, radius);
-	inventory = new Inventory("../JsonFile/inventoryTest.json", "Player");
+	inventory = new Inventory("../JsonFile/inventoryTest.json", "Player", 64);
 	inventory->load();
 }
 
@@ -26,6 +26,7 @@ void Player::update()
 {
 	move();
 	inventory->save();
+	inventory->removeByID("i000000");
 	Camera::move(position, speed);
 	attack->setStat(stat);
 	attack->shoot(direction, destRect.x, destRect.y, center);

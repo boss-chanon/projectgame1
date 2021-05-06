@@ -8,16 +8,19 @@
 class Inventory
 {
 public:
-	Inventory(string filename, string name);
+	Inventory(string filename, string name, int size);
 	~Inventory();
 
 	void load();
 	void add(Stack data);
-	int remove(int order, int figure);
+	void clearSlot(int slot);
+	void changeSlot(int from, int to);
+	int removeBySlot(int order, int figure);
+	bool removeByID(string ID);
 	void save();
 private:
 	vector<Stack> item;
-	int maxFigure;
+	int maxFigure, slotSize;
 	json data;
 	string file, name;
 };

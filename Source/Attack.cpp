@@ -10,6 +10,9 @@ Attack::Attack(const char* filename, SDL_Point size, int spd, SDL_Point rad)
 	radius = rad;
 }
 
+Attack::~Attack()
+{}
+
 void Attack::setStat(Stat s)
 {
 	stat = s;
