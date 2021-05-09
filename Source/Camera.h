@@ -1,15 +1,15 @@
 #pragma once
 
 #include "Game.h"
-#include "Player.h"
+#include "PlayerPosition.h"
 #include <iostream>
 
 class Camera
 {
 public:
-	static void move(SDL_Point position, int speed);
 	static SDL_Point center();
+	static void set(int x, int y);
 
-	static int xmove;
-	static int ymove;
+	static int xcam;
+	static int ycam;
 };

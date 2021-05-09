@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "Stat.h"
 #include "Inventory.h"
+#include "PlayerPosition.h"
 #include <iostream>
 
 class Player
@@ -19,6 +20,8 @@ public:
 	void render();
 	void walk();
 
+	SDL_Rect srcRect, destRect;
+
 private:
 	int aniPos, aniWalk, walkCount = 0;
 	int speed, fileWidth, fileHeight;
@@ -30,5 +33,4 @@ private:
 
 	SDL_Texture* texture;
 	SDL_Point radius, center, area, position;
-	SDL_Rect srcRect, destRect;
 };

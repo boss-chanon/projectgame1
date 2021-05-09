@@ -10,8 +10,8 @@ Player::Player(const char* filename)
 	fileHeight = TextManager::height;
 	fileWidth = TextManager::width;
 
-	area.x = 16;
-	area.y = 80;
+	area.x = 80;
+	area.y = 16;
 	
 	radius.x = (area.x - 64) / 2;
 	radius.y = 10;
@@ -26,10 +26,10 @@ void Player::update()
 {
 	move();
 	inventory->save();
-	inventory->removeByID("i000000");
-	Camera::move(position, speed);
+	PlayerPosition::sizeSet(destRect.w, destRect.h);
+	PlayerPosition::move(position, speed);
 	attack->setStat(stat);
-	attack->shoot(direction, destRect.x, destRect.y, center);
+	attack->slash(direction, destRect.x, destRect.y, center);
 	StatManager::saveStat("../JsonFile/statTest.json", "Player", stat);
 }
 

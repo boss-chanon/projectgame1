@@ -12,6 +12,7 @@ public:
 	void loadMap();
 	void drawMap();
 
+	int width, height;
 private:
 	SDL_Texture* texture;
 	SDL_Rect srcRect, destRect;

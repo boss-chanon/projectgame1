@@ -229,20 +229,23 @@ bool Attack::hit(SDL_Rect rect)
 {
 	for (int i = 0; i < ObjectManager::list.size(); i++)
 	{
-		objRect.x = ObjectManager::list[i].x - Camera::xmove;
-		objRect.y = ObjectManager::list[i].y - Camera::ymove;
-		objRect.h = ObjectManager::list[i].height;
-		objRect.w = ObjectManager::list[i].width;
-		if (Collision(hitRect, objRect))
+		if (ObjectManager::object[i].renderState)
 		{
-			cout << "hit" << endl;
-			ObjectManager::list[i].HP -= damage();
-			if (ObjectManager::list[i].HP == 0)
+			objRect.x = ObjectManager::list[i].x - Camera::xcam;
+			objRect.y = ObjectManager::list[i].y - Camera::ycam;
+			objRect.h = ObjectManager::list[i].height;
+			objRect.w = ObjectManager::list[i].width;
+			if (Collision(hitRect, objRect))
 			{
-				ObjectManager::remove(i);
-			}
+				cout << "hit" << endl;
+				ObjectManager::list[i].HP -= damage();
+				if (ObjectManager::list[i].HP == 0)
+				{
+					ObjectManager::remove(i);
+				}
 
-			return true;
+				return true;
+			}
 		}
 	}
 

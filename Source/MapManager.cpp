@@ -25,7 +25,7 @@ void MapManager::spawnObject(const int spawnTime)
 {
 	vector<int> spawnRange = { 0 };
 	vector<spawnArea> area;
-	int Max;
+	int Max = 0;
 
 	json spawnObj = spawnData["object"];
 
@@ -82,14 +82,8 @@ void MapManager::spawnObject(const int spawnTime)
 bool MapManager::spawnOverlab(SDL_Rect rect)
 {
 	SDL_Rect objRect;
-	SDL_Rect playerRect;
 
-	playerRect.w = 64;
-	playerRect.h = 64;
-	playerRect.x = Camera::xmove + Camera::center().x - (playerRect.w / 2);
-	playerRect.y = Camera::ymove + Camera::center().y - (playerRect.h / 2);
-
-	if (Collision(playerRect, rect))
+	if (Collision(PlayerPosition::getPosition(), rect))
 	{
 		return true;
 	}
@@ -105,16 +99,37 @@ bool MapManager::spawnOverlab(SDL_Rect rect)
 			return true;
 		}
 	}
-
-
-
 	return false;
 }
 
+/*void MapManager::changeMap(SDL_Rect rect)
+{
+	SDL_Rect area;
+	area.x = 0;
+	area.y = 0;
+	area.w = map->width;
+	area.h = map->height;
+
+	if (rect.x < area.x)
+	{
+		loadData(filename, data[name]["changeMap"]["LEFT"]);
+	}
+	if (rect.y < area.y)
+	{
+		loadData(filename, data[name]["changeMap"]["TOP"]);
+	}
+	if (rect.x + rect.w > area.x + area.w)
+	{
+		loadData(filename, data[name]["changeMap"]["RIGHT"]);
+	}
+	if (rect.y + rect.h > area.y + area.h)
+	{
+		loadData(filename, data[name]["changeMap"]["BUTTOM"]);
+	}
+}*/
+
 void MapManager::saveData()
 {
-	data;
-
 	data[name]["image"] = image;
 	data[name]["object"] = ObjectManager::save();
 	data[name]["spawnData"] = spawnData;

@@ -7,6 +7,7 @@
 #include "MapManager.h"
 #include "TimeManager.h"
 #include "Item.h"
+#include "PlayerPosition.h"
 
 Player* player1;
 

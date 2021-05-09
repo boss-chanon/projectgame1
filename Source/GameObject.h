@@ -12,11 +12,12 @@ public:
 	GameObject(ObjectData data);
 
 	void update();
-	void render();
+	void render();	
+	
+	bool renderState;
 private:
 	int xpos, ypos;
 	int width, height, fileWidth, fileHeight;
-	bool renderState;
 
 	SDL_Texture* texture;
 	SDL_Rect srcRect, destRect;
