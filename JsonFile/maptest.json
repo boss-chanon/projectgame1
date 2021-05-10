@@ -1,14 +1,69 @@
 {
     "map0": {
+        "changeMap": {
+            "BUTTOM": "map1",
+            "LEFT": "map1",
+            "RIGHT": "map1",
+            "TOP": "map1"
+        },
         "image": "../image/maptest1.png",
         "object": {
             "0": {
-                "HP": 20,
+                "HP": 10,
                 "height": 64,
                 "image": "../image/test1.png",
                 "width": 64,
                 "x": 0,
                 "y": 0
+            }
+        },
+        "spawnData": {
+            "object": {
+                "0": {
+                    "HP": 20,
+                    "area": {
+                        "height": 600,
+                        "width": 600,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "height": 64,
+                    "image": "../image/test1.png",
+                    "spawnRate": 80,
+                    "width": 64
+                },
+                "1": {
+                    "HP": 40,
+                    "area": {
+                        "height": 400,
+                        "width": 400,
+                        "x": 600,
+                        "y": 600
+                    },
+                    "height": 84,
+                    "image": "../image/test1.png",
+                    "spawnRate": 20,
+                    "width": 84
+                }
+            }
+        }
+    },
+    "map1": {
+        "changeMap": {
+            "BUTTOM": "map0",
+            "LEFT": "map0",
+            "RIGHT": "map0",
+            "TOP": "map0"
+        },
+        "image": "../image/maptest1.png",
+        "object": {
+            "0": {
+                "HP": 10,
+                "height": 64,
+                "image": "../image/test1.png",
+                "width": 64,
+                "x": 20,
+                "y": 20
             }
         },
         "spawnData": {
