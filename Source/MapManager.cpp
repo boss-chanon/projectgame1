@@ -8,6 +8,9 @@ int MapManager::space = 50;
 
 void MapManager::loadData(string fname, string n)
 {
+	ObjectManager::list.clear();
+	ObjectManager::object.clear();
+
 	filename = fname;
 	name = n;
 	data = JsonManager::loadJson(const_cast<char*>(filename.c_str()));
@@ -83,7 +86,7 @@ bool MapManager::spawnOverlab(SDL_Rect rect)
 {
 	SDL_Rect objRect;
 
-	if (Collision(PlayerPosition::getPosition(), rect))
+	if (Collision(PlayerPosition::rect, rect))
 	{
 		return true;
 	}
@@ -102,7 +105,7 @@ bool MapManager::spawnOverlab(SDL_Rect rect)
 	return false;
 }
 
-/*void MapManager::changeMap(SDL_Rect rect)
+void MapManager::changeMap(SDL_Rect& rect)
 {
 	SDL_Rect area;
 	area.x = 0;
@@ -110,23 +113,31 @@ bool MapManager::spawnOverlab(SDL_Rect rect)
 	area.w = map->width;
 	area.h = map->height;
 
-	if (rect.x < area.x)
+	if (rect.x < area.x) // LEFT
 	{
 		loadData(filename, data[name]["changeMap"]["LEFT"]);
+		rect.x = 0;
+		rect.y = 0;
 	}
-	if (rect.y < area.y)
+	if (rect.y < area.y) // TOP
 	{
 		loadData(filename, data[name]["changeMap"]["TOP"]);
+		rect.x = 0;
+		rect.y = 0;
 	}
-	if (rect.x + rect.w > area.x + area.w)
+	if (rect.x + rect.w > area.x + area.w) // RIGHT
 	{
 		loadData(filename, data[name]["changeMap"]["RIGHT"]);
+		rect.x = 0;
+		rect.y = 0;
 	}
-	if (rect.y + rect.h > area.y + area.h)
+	if (rect.y + rect.h > area.y + area.h) // BUTTOM
 	{
 		loadData(filename, data[name]["changeMap"]["BUTTOM"]);
+		rect.x = 0;
+		rect.y = 0;
 	}
-}*/
+}
 
 void MapManager::saveData()
 {

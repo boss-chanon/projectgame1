@@ -14,7 +14,7 @@ public:
 	static void loadData(string filename, string name);
 	static void spawnObject(const int spawnTime);
 	static bool spawnOverlab(SDL_Rect rec);
-	//static void changeMap(SDL_Rect rec);
+	static void changeMap(SDL_Rect& rec);
 	static void saveData();
 
 	static string image, filename, name; 

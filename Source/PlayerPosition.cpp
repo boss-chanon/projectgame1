@@ -1,37 +1,27 @@
 #include "PlayerPosition.h"
-#include "JsonManager.h"
+#include "MapManager.h"
 
-int PlayerPosition::height, PlayerPosition::width, PlayerPosition::xpos, PlayerPosition::ypos;
+SDL_Rect PlayerPosition::rect;
 
 void PlayerPosition::sizeSet(int w, int h)
 {
-	width = w;
-	height = h;
+	rect.w = w;
+	rect.h = h;
 }
 
 void PlayerPosition::move(SDL_Point position, int speed)
 {
-	xpos += (position.x * speed);
-	ypos += (position.y * speed);
+	rect.x += (position.x * speed);
+	rect.y += (position.y * speed);
 
-	Camera::set(xpos, ypos);
-}
-
-SDL_Rect PlayerPosition::getPosition()
-{
-	SDL_Rect rect;
-	rect.w = width;
-	rect.h = height;
-	rect.x = xpos;
-	rect.y = ypos;
-
-	return rect;
+	Camera::set(rect.x, rect.y);
+	MapManager::changeMap(rect);
 }
 
 void PlayerPosition::setPosition(int x, int y)
 {
-	xpos = x;
-	ypos = y;
+	rect.x = x;
+	rect.y = y;
 
-	Camera::set(xpos, ypos);
+	Camera::set(rect.x, rect.y);
 }

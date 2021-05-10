@@ -1,5 +1,4 @@
 #include "Camera.h"
-#include "JsonManager.h"
 
 int Camera::xcam, Camera::ycam;
 
@@ -14,6 +13,6 @@ SDL_Point Camera::center()
 
 void Camera::set(int x, int y)
 {
-	xcam = x - center().x + (PlayerPosition::width / 2);
-	ycam = y - center().y + (PlayerPosition::height / 2);
+	xcam = x - center().x + (PlayerPosition::rect.w / 2);
+	ycam = y - center().y + (PlayerPosition::rect.h / 2);
 }
