@@ -116,25 +116,21 @@ void MapManager::changeMap(SDL_Rect& rect)
 	if (rect.x < area.x) // LEFT
 	{
 		loadData(filename, data[name]["changeMap"]["LEFT"]);
-		rect.x = 0;
-		rect.y = 0;
+		rect.x = map->width - PlayerPosition::rect.w;
 	}
 	if (rect.y < area.y) // TOP
 	{
 		loadData(filename, data[name]["changeMap"]["TOP"]);
-		rect.x = 0;
-		rect.y = 0;
+		rect.y = map->height - PlayerPosition::rect.h;
 	}
 	if (rect.x + rect.w > area.x + area.w) // RIGHT
 	{
 		loadData(filename, data[name]["changeMap"]["RIGHT"]);
 		rect.x = 0;
-		rect.y = 0;
 	}
 	if (rect.y + rect.h > area.y + area.h) // BUTTOM
 	{
 		loadData(filename, data[name]["changeMap"]["BUTTOM"]);
-		rect.x = 0;
 		rect.y = 0;
 	}
 }
