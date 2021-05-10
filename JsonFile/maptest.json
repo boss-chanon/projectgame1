@@ -10,6 +10,7 @@
         "object": {
             "0": {
                 "HP": 10,
+                "element": "test",
                 "height": 64,
                 "image": "../image/test1.png",
                 "width": 64,
@@ -27,6 +28,7 @@
                         "x": 0,
                         "y": 0
                     },
+                    "element": "test",
                     "height": 64,
                     "image": "../image/test1.png",
                     "spawnRate": 80,
@@ -40,6 +42,7 @@
                         "x": 600,
                         "y": 600
                     },
+                    "element": "test",
                     "height": 84,
                     "image": "../image/test1.png",
                     "spawnRate": 20,
@@ -59,6 +62,7 @@
         "object": {
             "0": {
                 "HP": 10,
+                "element": "test",
                 "height": 64,
                 "image": "../image/test1.png",
                 "width": 64,
@@ -76,6 +80,7 @@
                         "x": 0,
                         "y": 0
                     },
+                    "element": "test",
                     "height": 64,
                     "image": "../image/test1.png",
                     "spawnRate": 80,
@@ -89,6 +94,7 @@
                         "x": 600,
                         "y": 600
                     },
+                    "element": "test",
                     "height": 84,
                     "image": "../image/test1.png",
                     "spawnRate": 20,
