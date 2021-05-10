@@ -12,4 +12,5 @@ struct ObjectData
 	int y;
 	//stat
 	int HP;
+	string Element;
 };

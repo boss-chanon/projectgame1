@@ -18,6 +18,7 @@ void ObjectManager::objectLoad(json data)
 		tran.x = data[title]["x"];
 		tran.y = data[title]["y"];
 		tran.HP = data[title]["HP"];
+		tran.Element = data[title]["element"];
 
 		add(tran);
 	}
@@ -61,6 +62,7 @@ json ObjectManager::save()
 		data[title]["x"] = list[i].x;
 		data[title]["y"] = list[i].y;
 		data[title]["HP"] = list[i].HP;
+		data[title]["element"] = list[i].Element;
 	}
 
 	return data;
