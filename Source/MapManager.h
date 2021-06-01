@@ -17,7 +17,7 @@ public:
 	static void changeMap(SDL_Rect& rec);
 	static void saveData();
 
-	static string image, filename, name; 
+	static string image, filename, name;
 	static json object, spawnData, data;
 	static Map* map;
 private:

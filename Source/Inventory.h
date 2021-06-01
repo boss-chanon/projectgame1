@@ -18,8 +18,9 @@ public:
 	int removeBySlot(int order, int figure);
 	bool removeByID(string ID);
 	void save();
-private:
+
 	vector<Stack> item;
+private:
 	int maxFigure, slotSize;
 	json data;
 	string file, name;

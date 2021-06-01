@@ -7,7 +7,7 @@ class TimeManager
 public:
 	static void timeSet();
 	static Uint32 getTime();
-	static bool delay(const int time);
+	static bool spawnDelay(const int time);
 private:
 	static Uint32 startTime, delayTime;
 };

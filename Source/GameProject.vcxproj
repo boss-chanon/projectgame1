@@ -20,12 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attack.h" />
+    <ClInclude Include="AttackBox.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="Equipment.h" />
+    <ClInclude Include="GameSetting.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="PlayerData.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="PlayerPosition.h" />
     <ClInclude Include="SpawnArea.h" />
@@ -43,11 +47,14 @@
   <ItemGroup>
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Equipment.cpp" />
+    <ClCompile Include="GameSetting.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="JsonManager.cpp" />
+    <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -65,9 +72,12 @@
     <Image Include="..\image\testATK.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\JsonFile\equipmentTest.json" />
+    <None Include="..\JsonFile\GameSetting.json" />
     <None Include="..\JsonFile\inventoryTest.json" />
     <None Include="..\JsonFile\itemTest.json" />
     <None Include="..\JsonFile\maptest.json" />
+    <None Include="..\JsonFile\playerData.json" />
     <None Include="..\JsonFile\statTest.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

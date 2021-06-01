@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Player.h"
 #include "ObjectData.h"
+#include "GameSetting.h"
 
 class GameObject
 {

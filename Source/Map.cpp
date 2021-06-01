@@ -8,10 +8,10 @@ Map::Map(const char* filename)
 	height = TextManager::height;
 }
 
-void Map::loadMap()
+void Map::updateMap()
 {
-	srcRect.w = Game::width;
-	srcRect.h = Game::height;
+	srcRect.w = Game::width / GameSetting::scaleX;
+	srcRect.h = Game::height / GameSetting::scaleY;
 	srcRect.x = Camera::xcam;
 	srcRect.y = Camera::ycam;
 

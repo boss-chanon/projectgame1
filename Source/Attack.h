@@ -4,7 +4,9 @@
 #include "TextManager.h"
 #include "Collision.h"
 #include "Stat.h"
-#include <iostream>
+#include "AttackBox.h"
+#include "GameSetting.h"
+#include <vector>
 #include <math.h>
 
 #ifndef PI
@@ -19,23 +21,25 @@ public:
 
 	void setStat(Stat stat);
 
-	void slash(std::string direction, int xpos, int ypos, SDL_Point cen);
-	void pierce(std::string direction, int xpos, int ypos, SDL_Point cen);
-	void blunt(std::string direction, int xpos, int ypos, SDL_Point cen);
-	void shoot(std::string direction, int xpos, int ypos, SDL_Point cen);
-
+	void slash(bool click, string direction, int xpos, int ypos, SDL_Point cen);
+	void pierce(bool click, string direction, int xpos, int ypos, SDL_Point cen);
+	void blunt(bool click, string direction, int xpos, int ypos, SDL_Point cen);
+	void shoot(bool click, int x, int y, int xpos, int ypos, SDL_Point cen);
+	
 	bool hit(SDL_Rect rect);
 	int damage();
 	void attackDirection(std::string direction);
+
 	void render();
 private:
-	int speed, aniX, aniY, x, y, move, xpos, ypos;
-	double angle, xmove, ymove;
-	bool ATKstage = false;
+	int speed, aniX, aniY, xpos, ypos;
+	double angle;
 
 	Stat stat;
+	vector<AttackBox> atkBox;
+	AttackBox box;
 
-	SDL_Rect srcRect, destRect, objRect, hitRect;
-	SDL_Point area, center, radius;
+	SDL_Rect srcRect, objRect, hitRect;
+	SDL_Point area, radius, center;
 	SDL_Texture* texture;
 };

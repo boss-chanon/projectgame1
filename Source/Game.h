@@ -3,6 +3,8 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 
+using namespace std;
+
 class Game
 {
 public:
@@ -15,6 +17,7 @@ public:
 	void handleEvent();
 	void update();
 	void render();
+	void save();
 
 	void end();
 
@@ -22,6 +25,7 @@ public:
 	static SDL_Event event;
 
 	static int width, height;
+	static string ID, password;
 private:
 	bool isRunning = false;	
 	SDL_Window* window;		

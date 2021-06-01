@@ -81,6 +81,18 @@
     <ClInclude Include="PlayerPosition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Equipment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSetting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -131,6 +143,15 @@
     <ClCompile Include="PlayerPosition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Equipment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSetting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\image\maptest1.png">
@@ -157,6 +178,15 @@
       <Filter>Json File</Filter>
     </None>
     <None Include="..\JsonFile\statTest.json">
+      <Filter>Json File</Filter>
+    </None>
+    <None Include="..\JsonFile\equipmentTest.json">
+      <Filter>Json File</Filter>
+    </None>
+    <None Include="..\JsonFile\GameSetting.json">
+      <Filter>Json File</Filter>
+    </None>
+    <None Include="..\JsonFile\playerData.json">
       <Filter>Json File</Filter>
     </None>
   </ItemGroup>

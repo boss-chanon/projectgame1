@@ -3,13 +3,14 @@
 #include "Game.h"
 #include "TextManager.h"
 #include "Camera.h"
+#include "GameSetting.h"
 
 class Map
 {
 public:
 	Map(const char* filename);
 
-	void loadMap();
+	void updateMap();
 	void drawMap();
 
 	int width, height;

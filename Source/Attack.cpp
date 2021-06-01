@@ -18,178 +18,250 @@ void Attack::setStat(Stat s)
 	stat = s;
 }
 
-void Attack::slash(std::string direction, int posx, int posy, SDL_Point cen)
+void Attack::slash(bool click, string direction, int posx, int posy, SDL_Point cen)
 {
-	xpos = posx;
-	ypos = posy;
-	center.x = cen.x + radius.x;
-	center.y = cen.y + radius.y + area.y;
-
-	if (!ATKstage)
+	if (atkBox.size() == 0)
 	{
-		if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
+		if (click)
 		{
-			ATKstage = true;
+			center.x = cen.x + radius.x;
+			center.y = cen.y + radius.y + area.y;
+
 			attackDirection(direction);
+
+			xpos = posx;
+			ypos = posy;
+
+			box.center = center;
+
+			box.destRect.w = area.x * GameSetting::scaleX;
+			box.destRect.h = area.y * GameSetting::scaleY;
+			box.destRect.x = xpos - radius.x - Camera::xcam;
+			box.destRect.y = ypos - radius.y - area.y - Camera::ycam;
+
+			box.hitRect = hitRect;
+
+			box.checkRect = box.hitRect;
+			box.checkRect.x = box.hitRect.x - Camera::xcam;
+			box.checkRect.y = box.hitRect.y - Camera::ycam;
+
+			box.angle = angle;
+
+			atkBox.push_back(box);
 		}
 	}
 
-	if (ATKstage)
+	if (atkBox.size() != 0)
 	{
 		aniX += speed;
 		aniY = 20;
+
 		if (aniX >= 60)
 		{
 			aniX = 0;
-			ATKstage = false;
+			atkBox.clear();
 			hit(hitRect);
 		}
-	}
-
+		
 	srcRect.w = 20;
 	srcRect.h = 20;
 	srcRect.x = aniX;
 	srcRect.y = aniY;
-
-	destRect.w = area.x;
-	destRect.h = area.y;
-	destRect.x = xpos - radius.x;
-	destRect.y = ypos - radius.y - area.y;
+	}
 }
 
-void Attack::pierce(std::string direction, int posx, int posy, SDL_Point cen)
+void Attack::pierce(bool click, string direction, int posx, int posy, SDL_Point cen)
 {
-	xpos = posx;
-	ypos = posy;
-	center.x = cen.x + radius.x;
-	center.y = cen.y + radius.y + area.y;
-
-	if (!ATKstage)
+	if (atkBox.size() == 0)
 	{
-		if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
+		if (click)
 		{
-			ATKstage = true;
+			center.x = cen.x + radius.x;
+			center.y = cen.y + radius.y + area.y;
+
 			attackDirection(direction);
+
+			xpos = posx;
+			ypos = posy;
+
+			box.center = center;
+
+			box.destRect.w = area.x * GameSetting::scaleX;
+			box.destRect.h = area.y * GameSetting::scaleY;
+			box.destRect.x = xpos - radius.x - Camera::xcam;
+			box.destRect.y = ypos - radius.y - area.y - Camera::ycam;
+
+			box.hitRect = hitRect;
+
+			box.checkRect = box.hitRect;
+			box.checkRect.x = box.hitRect.x - Camera::xcam;
+			box.checkRect.y = box.hitRect.y - Camera::ycam;
+
+			box.angle = angle;
+
+			atkBox.push_back(box);
 		}
 	}
 
-	if (ATKstage)
+	if (atkBox.size() != 0)
 	{
 		aniX = 20;
 		aniY += speed;
+
 		if (aniY >= 60)
 		{
 			aniY = 0;
-			ATKstage = false;
+			atkBox.clear();
 			hit(hitRect);
 		}
+	
+		srcRect.w = 20;
+		srcRect.h = 20;
+		srcRect.x = aniX;
+		srcRect.y = aniY;
 	}
-
-	srcRect.w = 20;
-	srcRect.h = 20;
-	srcRect.x = aniX;
-	srcRect.y = aniY;
-
-	destRect.w = area.x;
-	destRect.h = area.y;
-	destRect.x = xpos - radius.x;
-	destRect.y = ypos - radius.y - area.y;
 }
 
-void Attack::blunt(std::string direction, int posx, int posy, SDL_Point cen)
+void Attack::blunt(bool click, string direction, int posx, int posy, SDL_Point cen)
 {
-	xpos = posx;
-	ypos = posy;
-
-	center.x = cen.x + radius.x;
-	center.y = cen.y + radius.y + area.y;
-
-	if (!ATKstage)
+	if (atkBox.size() == 0)
 	{
-		if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
+		if (click)
 		{
-			ATKstage = true;
+			center.x = cen.x + radius.x;
+			center.y = cen.y + radius.y + area.y;
+
 			attackDirection(direction);
+
+			xpos = posx;
+			ypos = posy;
+
+			box.center = center;
+
+			box.destRect.w = area.x * GameSetting::scaleX;
+			box.destRect.h = area.y * GameSetting::scaleY;
+			box.destRect.x = xpos - radius.x - Camera::xcam;
+			box.destRect.y = ypos - radius.y - area.y - Camera::ycam;
+
+			box.hitRect = hitRect;
+
+			box.checkRect = box.hitRect;
+			box.checkRect.x = box.hitRect.x - Camera::xcam;
+			box.checkRect.y = box.hitRect.y - Camera::ycam;
+
+			box.angle = angle;
+
+			atkBox.push_back(box);
 		}
 	}
 
-	if (ATKstage)
+	if (atkBox.size() != 0)
 	{
 		aniX = 20;
 		aniY += speed;
+
 		if (aniY >= 60)
 		{
 			aniY = 0;
-			ATKstage = false;
+			atkBox.clear();
 			hit(hitRect);
 		}
+
+		srcRect.w = 20;
+		srcRect.h = 20;
+		srcRect.x = aniX;
+		srcRect.y = aniY;
 	}
-
-	srcRect.w = 20;
-	srcRect.h = 20;
-	srcRect.x = aniX;
-	srcRect.y = aniY;
-
-	destRect.w = area.x;
-	destRect.h = area.y;
-	destRect.x = xpos - radius.x;
-	destRect.y = ypos - radius.y - area.y;
 }
 
-void Attack::shoot(std::string direction, int posx, int posy, SDL_Point cen)
+void Attack::shoot(bool click, int x, int y, int posx, int posy, SDL_Point cen)
 {
-	xpos = posx;
-	ypos = posy;
-
-	center.x = area.x / 2;
-	center.y = area.y / 2 + move;
-
-	if (!ATKstage)
+	if (true)
 	{
-		if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(SDL_BUTTON_LEFT))
-		{
-			ATKstage = true;
-			angle = atan2((x - destRect.x - center.x) , (destRect.y + center.y - y)) * 180 / PI;
+		if (click)
+		{	
+			aniX = 20;
+			aniY = 20;
+
+			srcRect.w = 20;
+			srcRect.h = 20;
+			srcRect.x = aniX;
+			srcRect.y = aniY;
+			
+			xpos = posx;
+			ypos = posy;
+			
+			box.goal.x = x;
+			box.goal.y = y;
+
+			center.x = area.x / 2;
+			center.y = area.y / 2;
+
+			angle = atan2((x - xpos - cen.x), (ypos + cen.y - y)) * 180 / PI;
+
+			box.angle = angle;
+
+			box.center = center;
+
+			box.xpos = xpos;
+			box.ypos = ypos;
+
+			box.destRect.w = area.x * GameSetting::scaleX;
+			box.destRect.h = area.y * GameSetting::scaleY;
+			box.destRect.x = box.xpos - radius.x - Camera::xcam;
+			box.destRect.y = box.ypos + cen.y - (area.y / 2) - Camera::ycam;
+
+			box.hitRect.w = area.x * GameSetting::scaleX;
+			box.hitRect.h = area.x * GameSetting::scaleY;
+			box.hitRect.x = box.xpos - radius.x;
+			box.hitRect.y = box.ypos - radius.x;
+
+			box.move = 0;
+			box.xmove = 0;
+			box.ymove = 0;
+
+			atkBox.push_back(box);
 		}
 	}
 
-	if (ATKstage)
+	for (int i = 0; i < atkBox.size(); i++)
 	{
-		aniX = 20;
-		aniY = 20;
-		move += speed;
-		xmove += speed * sin(angle * PI / 180);
-		ymove += speed * cos(angle * PI / 180);
-		if (move >= sqrt(pow(x - destRect.x - center.x, 2) + pow(destRect.y + center.y - y, 2)))
+		atkBox[i].move += speed;
+		atkBox[i].xmove += speed * sin(angle * PI / 180);
+		atkBox[i].ymove += speed * cos(angle * PI / 180);
+
+		atkBox[i].destRect.x = box.xpos - radius.x - Camera::xcam;
+		atkBox[i].destRect.y = box.ypos + cen.y - (area.y / 2) - Camera::ycam - atkBox[i].move;
+
+		atkBox[i].hitRect.x = box.xpos - radius.x + atkBox[i].xmove;
+		atkBox[i].hitRect.y = box.ypos - radius.x - atkBox[i].ymove;
+
+		atkBox[i].center.y += speed;
+
+		atkBox[i].checkRect = atkBox[i].hitRect;
+		atkBox[i].checkRect.x -= Camera::xcam;
+		atkBox[i].checkRect.y -= Camera::ycam;
+
+		int xCheck = atkBox[i].xpos - radius.x;
+		int yCheck = atkBox[i].ypos + cen.y - (area.y / 2) - atkBox[i].move;
+
+
+		if (atkBox[i].move >= sqrt(pow(atkBox[i].goal.x - xCheck - atkBox[i].center.x, 2) + pow(yCheck + atkBox[i].center.y - atkBox[i].goal.y, 2)))
 		{
-			xmove = ymove = move = 0;
-			ATKstage = false;
+			atkBox.erase(atkBox.begin() + i);
 		}
 
-		hitRect.w = area.x;
-		hitRect.h = area.x;
-		hitRect.x = xpos - radius.x + xmove;
-		hitRect.y = ypos - radius.x - ymove;
-
-		if (hit(hitRect))
+		else
 		{
-			xmove = ymove = move = 0;
-			ATKstage = false;
+			if (hit(atkBox[i].hitRect))
+			{
+				atkBox.erase(atkBox.begin() + i);
+			}
 		}
-	}	
-
-	srcRect.w = 20;
-	srcRect.h = 20;
-	srcRect.x = aniX;
-	srcRect.y = aniY;
-
-	destRect.w = area.x;
-	destRect.h = area.y;
-	destRect.x = xpos - radius.x;
-	destRect.y = ypos + cen.y - (area.y / 2) - move;
+	}
 }
 
-void Attack::attackDirection(std::string direction)
+void Attack::attackDirection(string direction)
 {
 	if (direction == "Top")
 	{
@@ -231,15 +303,15 @@ bool Attack::hit(SDL_Rect rect)
 	{
 		if (ObjectManager::object[i].renderState)
 		{
-			objRect.x = ObjectManager::list[i].x - Camera::xcam;
-			objRect.y = ObjectManager::list[i].y - Camera::ycam;
+			objRect.x = ObjectManager::list[i].x;
+			objRect.y = ObjectManager::list[i].y;
 			objRect.h = ObjectManager::list[i].height;
 			objRect.w = ObjectManager::list[i].width;
-			if (Collision(hitRect, objRect))
+			if (Collision(rect, objRect))
 			{
 				cout << "hit" << endl;
 				ObjectManager::list[i].HP -= damage();
-				if (ObjectManager::list[i].HP == 0)
+				if (ObjectManager::list[i].HP <= 0)
 				{
 					ObjectManager::remove(i);
 				}
@@ -261,8 +333,11 @@ int Attack::damage()
 
 void Attack::render()
 {
-	if (ATKstage) 
+	for (int i = 0; i < atkBox.size(); i++)
 	{
-		TextManager::RotateDraw(texture, srcRect, destRect, angle, center);
+		if (TextManager::RenderCheck(atkBox[i].checkRect))
+		{
+			TextManager::RotateDraw(texture, srcRect, atkBox[i].destRect, atkBox[i].angle, atkBox[i].center);
+		}
 	}
 }

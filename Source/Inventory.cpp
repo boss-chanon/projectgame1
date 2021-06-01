@@ -32,13 +32,21 @@ void Inventory::add(Stack data)
 {
 	bool addStage = false;
 
-	for (int i = 0; i < item.size(); i++)
+	if (data.ID != "0")
 	{
-		if ((data.ID == item[i].ID) && (item[i].figure < maxFigure))
+		string type = Item::getData(data.ID)["type"];
+
+		if (type != "equipment")
 		{
-			item[i].figure++;
-			addStage = true;
-			break;
+			for (int i = 0; i < item.size(); i++)
+			{
+				if ((data.ID == item[i].ID) && (item[i].figure < maxFigure))
+				{
+					item[i].figure++;
+					addStage = true;
+					break;
+				}
+			}
 		}
 	}
 
@@ -54,6 +62,8 @@ void Inventory::add(Stack data)
 			}
 		}
 	}
+
+	save();
 }
 
 void Inventory::clearSlot(int slot)
@@ -69,6 +79,8 @@ void Inventory::changeSlot(int from, int to)
 		item[to] = item[from];
 		clearSlot(from);
 	}
+
+	save();
 }
 
 int Inventory::removeBySlot(int order, int figure)
@@ -83,6 +95,7 @@ int Inventory::removeBySlot(int order, int figure)
 		clearSlot(order);
 	}
 
+	save();
 	return over;
 }
 
@@ -99,11 +112,12 @@ bool Inventory::removeByID(string ID)
 				{
 					clearSlot(i);
 				}
+				save();
+
 				return true;
 			}
 		}
 	}
-
 	return false;
 }
 

@@ -1,4 +1,5 @@
 #include "TimeManager.h"
+#include <iostream>
 
 Uint32 TimeManager::startTime, TimeManager::delayTime;
 
@@ -15,7 +16,7 @@ Uint32 TimeManager::getTime()
 	return time;
 }
 
-bool TimeManager::delay(const int time)
+bool TimeManager::spawnDelay(const int time)
 {
 	if (time <= SDL_GetTicks() - delayTime)
 	{

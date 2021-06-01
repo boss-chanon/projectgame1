@@ -21,19 +21,12 @@ void GameObject::update()
 	srcRect.h = fileHeight;
 	srcRect.x = srcRect.y = 0;
 
-	destRect.w = width;
-	destRect.h = height;
+	destRect.w = width * GameSetting::scaleX;
+	destRect.h = height * GameSetting::scaleY;
 	destRect.x = xpos - Camera::xcam;
 	destRect.y = ypos - Camera::ycam;
 
-	if (((destRect.x + width) < 0) || (destRect.x > Game::width) || ((destRect.y + height) < 0) || (destRect.y > Game::height))
-	{
-		renderState = false;
-	}
-	else
-	{
-		renderState = true;
-	}
+	renderState = TextManager::RenderCheck(destRect);
 }
 
 void GameObject::render()

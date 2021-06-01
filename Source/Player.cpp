@@ -3,34 +3,39 @@
 #include "StatManager.h"
 #include <iostream>
 
-Player::Player(const char* filename)
+Player::Player(string filename, string ID)
 {
-	texture = TextManager::LoadTexture(filename);
+	texture = TextManager::LoadTexture(const_cast<char*>(filename.c_str()));
 
 	fileHeight = TextManager::height;
 	fileWidth = TextManager::width;
 
-	area.x = 80;
-	area.y = 16;
-	
-	radius.x = (area.x - 64) / 2;
-	radius.y = 10;
+	name = ID;
 
-	stat = StatManager::loadStat("../JsonFile/statTest.json", "Player");
-	attack = new Attack("../image/testATK.png", area, 5, radius);
-	inventory = new Inventory("../JsonFile/inventoryTest.json", "Player", 64);
+	stat = StatManager::getStat(name);
+	inventory = new Inventory(GameSetting::inventory, name, 64);
 	inventory->load();
+	equipment = new Equipment(inventory, GameSetting::equipment, name);
 }
 
 void Player::update()
 {
+	int x, y;
+	bool click = false;
+
+	if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(SDL_BUTTON_LEFT))
+	{
+		x += Camera::xcam;
+		y += Camera::ycam;
+		click = true;
+	}
+
 	move();
-	inventory->save();
 	PlayerPosition::sizeSet(destRect.w, destRect.h);
 	PlayerPosition::move(position, speed);
-	attack->setStat(stat);
-	attack->slash(direction, destRect.x, destRect.y, center);
-	StatManager::saveStat("../JsonFile/statTest.json", "Player", stat);
+	equipment->setStat(stat);
+	equipment->attack(click, x, y, direction, PlayerPosition::rect.x, PlayerPosition::rect.y, center);
+	StatManager::saveStat(name, stat);
 }
 
 void Player::move()
@@ -108,8 +113,8 @@ void Player::move()
 	srcRect.x = aniWalk * srcRect.w;
 	srcRect.y = aniPos * srcRect.h;
 
-	destRect.w = srcRect.w * 2;
-	destRect.h = srcRect.h * 2;
+	destRect.w = GameSetting::charactorSize().x;
+	destRect.h = GameSetting::charactorSize().y;
 	destRect.x = Camera::center().x - center.x;
 	destRect.y = Camera::center().y - center.y;
 }
@@ -130,6 +135,6 @@ void Player::walk()
 
 void Player::render()
 {
-	attack->render();
+	equipment->render();
 	TextManager::Draw(texture, srcRect, destRect);
 }

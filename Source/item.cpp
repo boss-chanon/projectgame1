@@ -2,9 +2,9 @@
 
 json Item::data;
 
-void Item::loadItem(const char* filename)
+void Item::loadItem(string filename)
 {
-	data = JsonManager::loadJson(filename);
+	data = JsonManager::loadJson(const_cast<char*>(filename.c_str()));
 }
 
 json Item::getData(string ID)

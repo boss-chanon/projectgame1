@@ -1,4 +1,5 @@
 #include "JsonManager.h"
+#include <iostream>
 
 json JsonManager::loadJson(const char* filename)
 {
@@ -11,5 +12,5 @@ json JsonManager::loadJson(const char* filename)
 void JsonManager::saveJson(json data, const char* filename)
 {
 	ofstream file(filename);
-	file << setw(4) << data << endl;
+	file << setw(1) << data << endl;
 }

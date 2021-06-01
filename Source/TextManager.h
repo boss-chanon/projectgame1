@@ -11,6 +11,7 @@ public:
 	static SDL_Texture* LoadTexture(const char* filename);
 	static void Draw(SDL_Texture* Tex, SDL_Rect src, SDL_Rect dest);
 	static void RotateDraw(SDL_Texture* Tex, const SDL_Rect src, const SDL_Rect dest, double angle, SDL_Point center);
+	static bool RenderCheck(SDL_Rect rect);
 
 	static int width, height;
 };

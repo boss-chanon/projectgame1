@@ -1,39 +1,63 @@
 #include "StatManager.h"
 
-Stat StatManager::loadStat(const char* filename, string name)
+json StatManager::data;
+string StatManager::filename;
+
+void StatManager::loadStat(string fname)
 {
-	json data = JsonManager::loadJson(filename);
-	
+	filename = fname;
+	data = JsonManager::loadJson(const_cast<char*>(filename.c_str()));
+}
+
+Stat StatManager::getStat(string name)
+{
 	Stat stat;
-	stat.AGI = data[name]["AGI"];
-	stat.CHA = data[name]["CHA"];
-	stat.DEX = data[name]["DEX"];
-	stat.END = data[name]["END"];
-	stat.HP = data[name]["HP"];
-	stat.INT = data[name]["INT"];
-	stat.MP = data[name]["MP"];
-	stat.PER = data[name]["PER"];
-	stat.STR = data[name]["STR"];
-	stat.WIL = data[name]["WIL"];
-	stat.WIS = data[name]["WIS"];
+	stat.AGI = data[name]["stat"]["AGI"];
+	stat.CHA = data[name]["stat"]["CHA"];
+	stat.DEX = data[name]["stat"]["DEX"];
+	stat.END = data[name]["stat"]["END"];
+	stat.HP = data[name]["stat"]["HP"];
+	stat.INT = data[name]["stat"]["INT"];
+	stat.MP = data[name]["stat"]["MP"];
+	stat.PER = data[name]["stat"]["PER"];
+	stat.STR = data[name]["stat"]["STR"];
+	stat.WIL = data[name]["stat"]["WIL"];
+	stat.WIS = data[name]["stat"]["WIS"];
 
 	return stat;
 }
 
-void StatManager::saveStat(const char* filename, string name, Stat stat)
+void StatManager::saveStat(string name, Stat stat)
 {
-	json data;
-	data[name]["AGI"] = stat.AGI;
-	data[name]["CHA"] = stat.CHA;
-	data[name]["DEX"] = stat.DEX;
-	data[name]["END"] = stat.END;
-	data[name]["HP"]= stat.HP;
-	data[name]["INT"] = stat.INT;
-	data[name]["MP"] = stat.MP;
-	data[name]["PER"] = stat.PER;
-	data[name]["STR"] = stat.STR;
-	data[name]["WIL"] = stat.WIL;
-	data[name]["WIS"] = stat.WIS;
+	data[name]["stat"]["AGI"] = stat.AGI;
+	data[name]["stat"]["CHA"] = stat.CHA;
+	data[name]["stat"]["DEX"] = stat.DEX;
+	data[name]["stat"]["END"] = stat.END;
+	data[name]["stat"]["HP"]= stat.HP;
+	data[name]["stat"]["INT"] = stat.INT;
+	data[name]["stat"]["MP"] = stat.MP;
+	data[name]["stat"]["PER"] = stat.PER;
+	data[name]["stat"]["STR"] = stat.STR;
+	data[name]["stat"]["WIL"] = stat.WIL;
+	data[name]["stat"]["WIS"] = stat.WIS;
 
-	JsonManager::saveJson(data, filename);
+	JsonManager::saveJson(data, const_cast<char*>(filename.c_str()));
+}
+
+Stat StatManager::addStat(Stat a, Stat b)
+{
+	Stat c;
+	c.AGI = a.AGI + b.AGI;
+	c.CHA = a.CHA + b.CHA;
+	c.DEX = a.DEX + b.DEX;
+	c.END = a.END + b.END;
+	c.HP = a.HP + b.HP;
+	c.INT = a.INT + b.INT;
+	c.MP = a.MP + b.MP;
+	c.PER = a.PER + b.PER;
+	c.STR = a.STR + b.STR;
+	c.WIL = a.WIL + b.WIL;
+	c.WIS = a.WIS + b.WIS;
+	
+	return c;
 }

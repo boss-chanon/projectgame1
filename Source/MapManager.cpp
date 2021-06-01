@@ -32,23 +32,23 @@ void MapManager::spawnObject(const int spawnTime)
 
 	json spawnObj = spawnData["object"];
 
-	for (int i = 0; i < spawnObj.size(); i++)
+	if (TimeManager::spawnDelay(spawnTime))
 	{
-		int range = spawnObj[to_string(i)]["spawnRate"] + spawnRange[i];
-		spawnRange.push_back(range);
-		Max = range;
+		for (int i = 0; i < spawnObj.size(); i++)
+		{
+			int range = spawnObj[to_string(i)]["spawnRate"] + spawnRange[i];
+			spawnRange.push_back(range);
+			Max = range;
 
-		spawnArea tran;
-		tran.height = spawnObj[to_string(i)]["area"]["height"];
-		tran.width = spawnObj[to_string(i)]["area"]["width"];
-		tran.x = spawnObj[to_string(i)]["area"]["x"];
-		tran.y = spawnObj[to_string(i)]["area"]["y"];
+			spawnArea tran;
+			tran.height = spawnObj[to_string(i)]["area"]["height"];
+			tran.width = spawnObj[to_string(i)]["area"]["width"];
+			tran.x = spawnObj[to_string(i)]["area"]["x"];
+			tran.y = spawnObj[to_string(i)]["area"]["y"];
 
-		area.push_back(tran);
-	}
+			area.push_back(tran);
+		}
 
-	if (TimeManager::delay(spawnTime))
-	{
 		int seed = TimeManager::getTime();
 
 		srand(seed);
