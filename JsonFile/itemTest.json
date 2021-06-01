@@ -5,5 +5,139 @@
     "type": "item",
     "describ": "use test system",
     "price": 0
+  },
+  "w000000": {
+    "name": "test0",
+    "type": "equipment",
+    "position": "head",
+    "stat": {
+      "AGI": 10,
+      "CHA": 10,
+      "DEX": 10,
+      "END": 10,
+      "HP": 20,
+      "INT": 10,
+      "MP": 20,
+      "PER": 10,
+      "STR": 10,
+      "WIL": 10,
+      "WIS": 10
+    }
+  },
+  "w000001": {
+    "name": "test1",
+    "type": "equipment",
+    "position": "body",
+    "stat": {
+      "AGI": 10,
+      "CHA": 10,
+      "DEX": 10,
+      "END": 10,
+      "HP": 20,
+      "INT": 10,
+      "MP": 20,
+      "PER": 10,
+      "STR": 10,
+      "WIL": 10,
+      "WIS": 10
+    }
+  },
+  "w000002": {
+    "name": "test2",
+    "type": "equipment",
+    "position": "leg",
+    "stat": {
+      "AGI": 10,
+      "CHA": 10,
+      "DEX": 10,
+      "END": 10,
+      "HP": 20,
+      "INT": 10,
+      "MP": 20,
+      "PER": 10,
+      "STR": 10,
+      "WIL": 10,
+      "WIS": 10
+    }
+  },
+  "w000003": {
+    "name": "test3",
+    "type": "equipment",
+    "position": "foot",
+    "stat": {
+      "AGI": 10,
+      "CHA": 10,
+      "DEX": 10,
+      "END": 10,
+      "HP": 20,
+      "INT": 10,
+      "MP": 20,
+      "PER": 10,
+      "STR": 10,
+      "WIL": 10,
+      "WIS": 10
+    }
+  },
+  "w000004": {
+    "name": "test4",
+    "type": "equipment",
+    "position": "cloth",
+    "stat": {
+      "AGI": 10,
+      "CHA": 10,
+      "DEX": 10,
+      "END": 10,
+      "HP": 20,
+      "INT": 10,
+      "MP": 20,
+      "PER": 10,
+      "STR": 10,
+      "WIL": 10,
+      "WIS": 10
+    }
+  },
+  "w000005": {
+    "name": "test5",
+    "type": "equipment",
+    "position": "arm",
+    "stat": {
+      "AGI": 10,
+      "CHA": 10,
+      "DEX": 10,
+      "END": 10,
+      "HP": 20,
+      "INT": 10,
+      "MP": 20,
+      "PER": 10,
+      "STR": 10,
+      "WIL": 10,
+      "WIS": 10
+    }
+  },
+  "w000006": {
+    "name": "test6",
+    "type": "equipment",
+    "position": "weapon",
+    "damageType": "shoot",
+    "image": "../image/testATK.png",
+    "speed": 3,
+    "hitArea": {
+      "sizeX": 16,
+      "sizeY": 60,
+      "radius": 10
+    },
+    "stat": {
+      "AGI": 10,
+      "CHA": 10,
+      "DEX": 10,
+      "END": 10,
+      "HP": 20,
+      "INT": 10,
+      "MP": 20,
+      "PER": 10,
+      "STR": 10,
+      "WIL": 10,
+      "WIS": 10
+    }
   }
 }

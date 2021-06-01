@@ -1,0 +1,13 @@
+{
+ "Player": {
+  "equipment": {
+   "arm": "none",
+   "body": "w000001",
+   "cloth": "none",
+   "foot": "none",
+   "head": "w000000",
+   "leg": "none",
+   "weapon": "w000006"
+  }
+ }
+}
